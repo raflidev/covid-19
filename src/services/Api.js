@@ -3,7 +3,7 @@ import axios from 'axios'
 export default {
   covidApi () {
     return axios.create({
-      baseURL: 'https://api.covid19api.com/'
+      baseURL: 'https://corona.lmao.ninja/'
     })
   },
   newsApi () {

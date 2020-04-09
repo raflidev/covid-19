@@ -80,11 +80,12 @@
 
 <script>
 import ApiService from '@/services/ApiService'
+import moment from 'moment'
+
 export default {
   name: 'hello',
   data () {
-    return {
-      msg: 'Welcome to Your Vue.js PWA',
+    return {      
       konfirmasi: '---',
       positif: '---',
       sembuh: '---',
@@ -95,12 +96,11 @@ export default {
   mounted () {
     ApiService.getConfirmed()
       .then(response => {
-        const x = response.data.length - 1
-        this.konfirmasi = response.data[x].Confirmed
-        this.positif = response.data[x].Active
-        this.sembuh = response.data[x].Recovered
-        this.meninggal = response.data[x].Deaths
-        this.update = response.data[x].Date
+        this.konfirmasi = response.data.cases
+        this.positif = response.data.active
+        this.sembuh = response.data.recovered
+        this.meninggal = response.data.deaths
+        this.update = moment(response.data.updated).format('LLLL')
       })
   }
 }
