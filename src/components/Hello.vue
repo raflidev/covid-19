@@ -1,27 +1,27 @@
 <template>
   <div class="hello mt-5">  
-    <div class="info-header">        
+    <div class="info-header">          
       <h1>Bersatu melawan COVID-19 mulai dari sekitar kita</h1>  
       <p>Ayo kita lakukan kampanye <span class="text-primary">#DiRumahAja</span> dengan cara berkegiatan dirumah dan meminimalisir kegiatan diluar rumah.</p>
     </div>  
     <h2>Jumlah kasus di Indonesia saat ini</h2>
     <div class="row text-center">      
-        <div class="col-sm-12 col-lg pt-3 m-2 info rounded ">
+        <div class="col-sm-12 col-lg pt-3 m-2 info rounded bg-light">
           <h1 class="text-warning">{{konfirmasi}}</h1>
           <p>Terkonfirmasi</p>
         </div>         
               
-        <div class="col-sm-12 col-lg pt-3 m-2 info rounded ">
+        <div class="col-sm-12 col-lg pt-3 m-2 info rounded bg-light">
           <h1 class="text-orange">{{positif}}</h1>
           <p>Positif</p>
         </div>         
               
-        <div class="col-sm-12 col-lg pt-3 m-2 info rounded ">
+        <div class="col-sm-12 col-lg pt-3 m-2 info rounded bg-light">
           <h1 class="text-success">{{sembuh}}</h1>
           <p>Sembuh</p>
         </div>         
               
-        <div class="col-sm-12 col-lg pt-3 m-2 info rounded ">
+        <div class="col-sm-12 col-lg pt-3 m-2 info rounded bg-light">
           <h1 class="text-danger">{{meninggal}}</h1>
           <p>Meninggal</p>
         </div>                                 
@@ -32,65 +32,45 @@
     </div> 
     <h2>Informasi terkini</h2>   
     <div class="my-4 mb-2">
-      <div class="row">        
-        <div class="col-lg p-3 mx-2 col-sm-12 mb-2 rounded box-news">
-          <h4 class="mb-4">Mudik Berisiko Tinggi Terpapar Virus Corona Covid-19 - Liputan6.com</h4>
-          <p>Ditengah wabah virus corona covid-19 di Indonesia, masyarakat diminta untuk melakukan segala aktivitas dari rumah masing-masing</p>
-          <div class="row">
-            <div class="col-6">Yoga Sukmana</div>
-            <div class="col-6 text-right">2020-04-07</div>
-          </div>
-        </div>        
-        <div class="col-lg p-3 mx-2 col-sm-12 mb-2 rounded box-news">
-          <h4 class="mb-4">Mudik Berisiko Tinggi Terpapar Virus Corona Covid-19 - Liputan6.com</h4>
-          <p>Ditengah wabah virus corona covid-19 di Indonesia, masyarakat diminta untuk melakukan segala aktivitas dari rumah masing-masing</p>
-          <div class="row">
-            <div class="col-6">Yoga Sukmana</div>
-            <div class="col-6 text-right">2020-04-07</div>
-          </div>
-        </div>        
-      </div>
+      <div class="row">    
 
+        <div class="col-lg p-3 mx-2 col-sm-12 mb-2 rounded box-news bg-light" v-for="news in news" :key="news.id">
+          <h4 class="mb-4 news-text">{{news.title}}</h4>
+          <p>{{news.description}}</p>
+          <div class="row">            
+            <div class="col-6">{{news.author}}</div>
+            <div class="col-6 text-right">{{news.publishedAt}}</div>
+          </div>
+        </div>                   
+      </div>
       <a href="" class="text-primary">Lihat Berita Terkini</a>
 
     </div>
-    <h2>Informasi Pencegahan</h2>
+    <h2>Informasi Tips</h2>
     <div class="mb-3">
       <div class="row">
-        <div class="col-sm-12 col-lg m-2 rounded p-3 box-news ">
-          <div class="col-lg-12">
-          <h4>7 langkah cuci tangan yang benar</h4>
-          </div>
-        </div>
-        <div class="col-sm-12 col-lg m-2 rounded p-3 box-news ">
-          <div class="col-lg-12">
-          <h4>7 langkah cuci tangan yang benar</h4>
-          </div>
-        </div>
-        <div class="col-sm-12 col-lg m-2 rounded p-3 box-news ">
-          <div class="col-lg-12">
-          <h4>7 langkah cuci tangan yang benar</h4>
-          </div>
-        </div>
+        <div class="col-sm-12 col-lg m-2 rounded py-2 box-news bg-light" v-for="tipsNews in tipsNews" :key="tipsNews.id">          
+          <h5>{{tipsNews.title}}</h5>          
+        </div>        
       </div>
       <a href="" class="text-primary">Lihat Berita Pencegahan</a>
     </div>
   </div>
 </template>
-
 <script>
 import ApiService from '@/services/ApiService'
 import moment from 'moment'
-
 export default {
   name: 'hello',
   data () {
-    return {      
+    return {
       konfirmasi: '---',
       positif: '---',
       sembuh: '---',
       meninggal: '---',
-      update: 'Gagal mengambil data'
+      update: 'Gagal mengambil data',
+      tipsNews: [],
+      news: []
     }
   },
   mounted () {
@@ -101,6 +81,22 @@ export default {
         this.sembuh = response.data.recovered
         this.meninggal = response.data.deaths
         this.update = moment(response.data.updated).format('LLLL')
+      })
+    ApiService.getEverythingNews('covid-19')
+      .then(response => {
+        var news = []
+        for (let i = 0; i < 2; i++) {
+          news[i] = response.data.articles[i]
+        }
+        this.news = news
+      })
+    ApiService.getEverythingNews('tips pencegahan covid-19')
+      .then(response => {
+        var tipsNews = []
+        for (let i = 0; i < 3; i++) {
+          tipsNews[i] = response.data.articles[i]
+        }
+        this.tipsNews = tipsNews
       })
   }
 }

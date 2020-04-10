@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'bootstrap'; import 'bootstrap/dist/css/bootstrap.min.css'
+import 'dark-mode-switch'; import 'dark-mode-switch/dark-mode-switch'; import 'dark-mode-switch/dark-mode.css'
 
 Vue.config.productionTip = false
 
