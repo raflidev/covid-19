@@ -8,19 +8,14 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/#/">Beranda</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/#/berita">Berita</a>
-      </li>
+    <ul class="navbar-nav mr-auto">            
+        <router-link tag="li" class="nav-item" active-class="active" to="/home"><a class="nav-link">Beranda</a></router-link>
+        <router-link tag="li" class="nav-item" active-class="active" to="/berita"><a class="nav-link">Berita</a></router-link>   
     </ul>
     <div class="custom-control custom-switch">
       <input type="checkbox" @click="darkMode()" class="custom-control-input" id="darkSwitch">
       <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
     </div>
-        <!-- <b class="btn btn-danger " @click="darkMode()">Dark mode</b> -->
   </div>
   </div>
 </nav>
@@ -33,67 +28,8 @@
 </template>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
-[data-theme="dark"] {
-    background-color: #111 !important;
-    color: #eee;
-  }
-  [data-theme="dark"] .bg-light {
-    background-color: #1d2024 !important;
-  }
-  [data-theme="dark"] .bg-white {
-    background-color: #000 !important;
-  }
-  [data-theme="dark"] .bg-black {
-    background-color: #ededed !important;
-  }
-  [data-theme="dark"] .navbar-light .navbar-brand{
-    color: white !important;
-  }
-  [data-theme="dark"] .nav-link{
-    color: white !important;
-  }
 body{
   font-family: 'Montserrat', sans-serif;
-  background-color: #ededed;
-  color: #1d2024;
-}
-.active > .nav-link {
-  border-bottom: 2px solid red;
-}
-.dark-mode {
-background-color: #1d2024;
-color: white;
-}
-.box-news, .info{
-  min-height: 100px;  
-}
-.news-text{
-  min-height: 29%;
-}
-.info-header{
-  margin: 6% 0;
-  max-width: 65%;
-}
-.text-orange{
-  color : #f78820;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #35495E;
-}
-@media only screen and (max-width: 600px) {
-  .info-header{    
-    max-width: 100%;
-  }
 }
 </style>
 <script>

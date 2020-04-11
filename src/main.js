@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '@/assets/style.css'
 import 'bootstrap'; import 'bootstrap/dist/css/bootstrap.min.css'
-import 'dark-mode-switch'; import 'dark-mode-switch/dark-mode-switch'; import 'dark-mode-switch/dark-mode.css'
 
 Vue.config.productionTip = false
 
@@ -14,4 +14,10 @@ new Vue({
   router,
   template: '<App/>',
   components: { App }
+})
+
+router.beforeEach((to, from, next) => {
+  const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title)
+  if (nearestWithTitle) document.title = nearestWithTitle.meta.title
+  next()
 })
