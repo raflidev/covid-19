@@ -2,7 +2,7 @@
   <div id="app">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">      
 <div class="container">
-  <a class="navbar-brand" href="#">COVID-19</a>      
+  <a class="navbar-brand" href="#/">COVID-19</a>      
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,10 +12,12 @@
         <router-link tag="li" class="nav-item" active-class="active" to="/home"><a class="nav-link">Beranda</a></router-link>
         <router-link tag="li" class="nav-item" active-class="active" to="/berita"><a class="nav-link">Berita</a></router-link>   
     </ul>
-    <div class="custom-control custom-switch">
-      <input type="checkbox" @click="darkMode()" class="custom-control-input" id="darkSwitch">
-      <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
-    </div>
+    <li>
+      <div class="custom-control custom-switch mt-2">
+        <input type="checkbox" @click="darkMode()" class="custom-control-input" id="darkSwitch">
+        <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+      </div>
+    </li>
   </div>
   </div>
 </nav>

@@ -1,7 +1,7 @@
 {
   "name": "covid-19",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Informasi dan Berita COVID-19",
   "author": "Rafli Ramadhan <rafliramadhan@gmail.com>",
   "private": true,
   "scripts": {

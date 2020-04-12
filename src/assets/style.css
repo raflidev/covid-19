@@ -42,6 +42,9 @@ color: white;
 .box-news, .info{
   min-height: 100px;  
 }
+#berita .box-news{
+  min-height: 140px;
+}
 .news-text{
   min-height: 29%;
 }

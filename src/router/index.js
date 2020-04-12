@@ -74,7 +74,7 @@ export default new Router({
     },
     {
       path: '/berita/tips/:id',
-      name: 'Tips',
+      name: 'tips',
       component: Tips,
       meta: {
         title: 'COVID-19 #DiRumahAJa',

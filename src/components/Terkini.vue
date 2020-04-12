@@ -15,11 +15,6 @@
     </div>
 </div>
 </template>
-<style>
-#berita .box-news{
-    height: 140px;
-}
-</style>
 <script>
 import ApiService from '@/services/ApiService'
 export default {
@@ -28,6 +23,17 @@ export default {
     return {
       news: []
     }
+  },
+  head: {
+    title: function () {
+      return {
+        inner: '#diRumahAja'
+      }
+    },
+    meta: [
+      { name: 'description', content: 'My description', id: 'desc' },
+      { name: 'dicoding:email', content: 'rafliramdhn@gmail.com' }
+    ]
   },
   mounted () {
     ApiService.getEverythingNews('covid-19')
