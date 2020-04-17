@@ -13,7 +13,7 @@
               
         <div class="col-sm-12 col-lg pt-3 m-2 info rounded bg-light">
           <h1 class="text-orange">{{positif}}</h1>
-          <p>Positif</p>
+          <p>Dalam Perawatan</p>
         </div>         
               
         <div class="col-sm-12 col-lg pt-3 m-2 info rounded bg-light">
